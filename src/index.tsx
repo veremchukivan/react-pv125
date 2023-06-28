@@ -1,23 +1,22 @@
-import React, {useEffect, useState} from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import {BrowserRouter} from "react-router-dom";
 
-import "./App.css";
-import axios from "axios";
-import {Route, Routes} from "react-router-dom";
-import CategoryListPage from "./components/category/list/CategoryListPage";
-import CategoryCreatePage from "./components/category/create/CategoryCreatePage";
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  <BrowserRouter>
+  <App />
+</BrowserRouter>
+);
 
-
-function App() {
-    return (
-        <>
-            <Routes>
-                <Route path="/">
-                    <Route index element={<CategoryListPage/>}/>
-                    <Route path="category/create" element={<CategoryCreatePage/>}/>
-                </Route>
-            </Routes>
-        </>
-    );
-}
-
-export default App;
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
