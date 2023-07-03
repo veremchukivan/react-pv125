@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import CategoryListPage from "./compnents/category/list/CategoryListPage";
-import { Routes, Route } from "react-router-dom";
-import CategoryCreatePage from "./compnents/category/create/CategoryCreatePage";
-import CategoryEditPage from "./compnents/category/edit/CetegoryEditPage";
+import { CategoryList } from "./components/admin/category/list/CategoryList";
+import { CategoryCreate } from "./components/admin/category/create/CategoryCreate";
+import { CategoryEdit } from "./components/admin/category/edit/CategoryEdit";
+import { AdminLayout } from "./components/admin/container/AdminLayout";
+import { AdminDashboard } from "./components/admin/dashboard/AdminDashboard";
+import { Login } from "./components/login/Login";
+import { Register } from "./components/register/Register";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/">
-          <Route index element={<CategoryListPage />} />
-          <Route path="category/create" element={<CategoryCreatePage />} />
-          <Route path="category/edit/:id" element={<CategoryEditPage />} />
+        <Route path="/"></Route>
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<Register />} />
+        <Route path={"/admin"} element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="category">
+            <Route index element={<CategoryList />} />
+            <Route path="create" element={<CategoryCreate />} />
+            <Route path="edit">
+              <Route path=":id" element={<CategoryEdit />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </>
